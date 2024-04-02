@@ -1,0 +1,49 @@
+{
+  "project_info": {
+    "project_number": "991708380390",
+    "firebase_url": "https://gamechattingapp-6339c-default-rtdb.firebaseio.com",
+    "project_id": "gamechattingapp-6339c",
+    "storage_bucket": "gamechattingapp-6339c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:991708380390:android:022fdb6b065a45a7c40f27",
+        "android_client_info": {
+          "package_name": "com.example.gamechattingapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBZ7QPKIAWm83W7u6Lir5KwOEgVTUs2Uhs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:991708380390:android:404eaa7e45d2dd9cc40f27",
+        "android_client_info": {
+          "package_name": "com.example.gamers_chat"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBZ7QPKIAWm83W7u6Lir5KwOEgVTUs2Uhs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

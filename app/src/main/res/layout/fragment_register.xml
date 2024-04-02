@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/liniarLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#BEA2F1"
+    android:orientation="vertical"
+    tools:context=".fragments.register">
+
+    <EditText
+        android:id="@+id/emailInput"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="email"
+        android:inputType="textWebEmailAddress"
+        android:shadowColor="#F1ECEC"
+        android:textColorHighlight="#EAD8D8"
+        android:textColorHint="#090000"
+        android:textColorLink="#F1E2E2" />
+
+    <EditText
+        android:id="@+id/nameinput"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="name"
+        android:inputType="textShortMessage"
+        android:textColorHint="#070606" />
+
+    <EditText
+        android:id="@+id/passwordInput"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="password"
+        android:inputType="textPassword"
+        android:textColorHint="#130000" />
+
+    <EditText
+        android:id="@+id/nickname_input"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="nickname "
+        android:inputType="textShortMessage"
+        android:textColorHint="#0E0000" />
+
+    <Button
+        android:id="@+id/registerButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="register" />
+
+</LinearLayout>
