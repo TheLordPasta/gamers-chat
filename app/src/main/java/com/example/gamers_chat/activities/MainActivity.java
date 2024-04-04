@@ -2,8 +2,6 @@ package com.example.gamers_chat.activities;
 
 import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
 
-import android.app.Activity;
-import android.app.Instrumentation;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -12,11 +10,11 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
+import androidx.appcompat.widget.Toolbar;
 
 import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContract;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -26,6 +24,8 @@ import com.bumptech.glide.Glide;
 import com.example.gamers_chat.R;
 import com.example.gamers_chat.models.User;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.progressindicator.LinearProgressIndicator;
@@ -38,14 +38,18 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
+
 
 public class MainActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     StorageReference storageRef;
-    LinearProgressIndicator progress;
+    LinearProgressIndicator progressIndicator;
     Uri image;
-    MaterialButton selectImage, uploadImage;
+    MaterialButton selectImageButtom, uploadImageButtom;
     ImageView imageView;
     private final ActivityResultLauncher<Intent> activityResultLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
         @Override
@@ -53,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
             if (result.getResultCode() == RESULT_OK) {
                 if (result.getData() != null) {
                     image = result.getData().getData();
-                    uploadImage.setEnabled(true);
+                    uploadImageButtom.setEnabled(true);
                     Glide.with(getApplicationContext()).load(image).into(imageView);
                 }
             } else {
@@ -62,6 +66,7 @@ public class MainActivity extends AppCompatActivity {
         }
     });
     public User currentUser;
+    public String currentUserUID;
 
 
     @Override
@@ -69,8 +74,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         FirebaseApp.initializeApp(MainActivity.this);
+        storageRef = FirebaseStorage.getInstance().getReference();
         mAuth = FirebaseAuth.getInstance();
     }
+
     public void registerUserData() {
             EditText userEmail = this.findViewById(R.id.emailInput);
             EditText userPass = this.findViewById(R.id.passwordInput);
@@ -127,6 +134,8 @@ public class MainActivity extends AppCompatActivity {
                                     Log.d(TAG, "signInWithEmail:success");
                                     FirebaseUser user = mAuth.getCurrentUser();
 
+                                    currentUserUID = user.getUid();
+
                                     fetchUserDetails(user);
                                     //updateUI(user);
                                     Navigation.findNavController(v).navigate(R.id.action_login_to_userProfile);
@@ -166,6 +175,52 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+    public void InitProfileImage(View view) {
+        Toolbar toolbar = view.findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
+        progressIndicator = view.findViewById(R.id.progress);
 
+        imageView = view.findViewById(R.id.imageView);
+        selectImageButtom = view.findViewById(R.id.selectImage);
+        uploadImageButtom = view.findViewById(R.id.uploadImage);
+        selectImageButtom.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Intent.ACTION_PICK);
+                intent.setType("image/*");
+                activityResultLauncher.launch(intent);
+            }
+        });
+
+        uploadImageButtom.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                uploadImage(image);
+            }
+        });
+    }
+
+    private void uploadImage(Uri file) {
+        StorageReference ref = storageRef.child(String.format("image/%s/",currentUserUID) + "profilePic");
+        StorageReference folderRef = storageRef.child(String.format("image/%s/profilePic",currentUserUID));
+        folderRef.delete();
+        ref.putFile(file).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                Toast.makeText(MainActivity.this, "Image Uploaded!!", Toast.LENGTH_SHORT).show();
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(MainActivity.this, "Failed!" + e.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onProgress(@NonNull UploadTask.TaskSnapshot taskSnapshot) {
+                progressIndicator.setMax(Math.toIntExact(taskSnapshot.getTotalByteCount()));
+                progressIndicator.setProgress(Math.toIntExact(taskSnapshot.getBytesTransferred()));
+            }
+        });
+    }
 }

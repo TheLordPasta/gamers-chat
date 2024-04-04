@@ -28,7 +28,8 @@
             android:ems="10"
             android:gravity="center"
             android:hint="Email"
-            android:inputType="textEmailAddress" />
+            android:inputType="textEmailAddress"
+            android:text="1@gmail.com" />
 
         <EditText
             android:id="@+id/loginPasswordInput"
@@ -37,7 +38,8 @@
             android:ems="10"
             android:gravity="center"
             android:hint="Password"
-            android:inputType="textPassword" />
+            android:inputType="textPassword"
+            android:text="123456" />
 
         <Button
             android:id="@+id/loginButton"

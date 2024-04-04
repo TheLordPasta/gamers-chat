@@ -4,79 +4,111 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/LinearLayout"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:background="#B6A9E6"
     android:orientation="vertical"
     tools:context=".fragments.UserProfile">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="500px"
+        android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <ImageView
-            android:id="@+id/profileUserProfilePicVIew"
-            android:layout_width="wrap_content"
+        <RelativeLayout
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_gravity="center"
-            android:layout_weight="1"
-            android:src="@drawable/ic_launcher_background"
-            tools:src="@tools:sample/avatars" />
+            android:visibility="visible"
+            tools:context="fragments.tempFragment">
 
-        <LinearLayout
-            android:layout_width="250px"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:orientation="vertical">
+
+            <com.google.android.material.appbar.MaterialToolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="?attr/colorPrimary"
+                app:title="Gamer Profile"
+                app:titleCentered="true"
+                app:titleTextColor="?attr/colorSurface" />
+
+            <com.google.android.material.progressindicator.LinearProgressIndicator
+                android:id="@+id/progress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/toolbar" />
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_below="@id/progress"
+                android:layout_marginTop="21dp"
+                app:srcCompat="@android:drawable/sym_def_app_icon" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/selectImage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/imageView"
+                android:layout_margin="10sp"
+                android:layout_marginTop="11dp"
+                android:layout_marginBottom="10sp"
+                android:text="Select" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/uploadImage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/selectImage"
+                android:layout_marginTop="-2dp"
+                android:enabled="false"
+                android:text="Upload Image" />
 
             <TextView
                 android:id="@+id/profileNickNameView"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="23dp"
+                android:layout_marginTop="88dp"
+                android:layout_toEndOf="@+id/imageView"
                 android:gravity="center"
                 tools:text="User Nickname" />
 
             <TextView
                 android:id="@+id/profileUserBioView"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_below="@+id/profileNickNameView"
+                android:layout_marginStart="23dp"
+                android:layout_marginTop="15dp"
+                android:layout_toEndOf="@+id/imageView"
                 android:gravity="center"
+                android:textAlignment="viewStart"
                 tools:text="User Bio" />
-        </LinearLayout>
 
-    </LinearLayout>
+            <Button
+                android:id="@+id/goToGamesListbutton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="50dp"
+                android:layout_marginTop="256dp"
+                android:layout_toEndOf="@+id/selectImage"
+                android:text="Games"
+                android:textAlignment="viewStart" />
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:orientation="horizontal">
+            <Button
+                android:id="@+id/toChats"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="17dp"
+                android:layout_marginTop="256dp"
+                android:layout_toEndOf="@+id/goToGamesListbutton"
+                android:text="chats" />
 
-        <Button
-            android:id="@+id/changeImageButton"
-            android:layout_width="72dp"
-            android:layout_height="25dp"
-            android:layout_weight="1"
-            android:background="#00FFFFFF"
-            android:baselineAligned="false"
-            android:text="Button"
-            android:textColorLink="#00FFFFFF"
-            android:textSize="8sp"
-            app:icon="@android:drawable/ic_menu_gallery"
-            app:iconSize="24dp"
-            app:strokeColor="#FFFFFF" />
+        </RelativeLayout>
 
-        <Button
-            android:id="@+id/goToGamesListbutton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Games"
-            android:textAlignment="viewStart" />
-
-        <Button
-            android:id="@+id/toChats"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="chats" />
     </LinearLayout>
 
 </LinearLayout>
