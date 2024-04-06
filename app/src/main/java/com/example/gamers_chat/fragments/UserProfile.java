@@ -70,6 +70,7 @@ public class UserProfile extends Fragment {
         MainActivity mainActivity = (MainActivity) getActivity();
 
         mainActivity.InitProfileImage(view);
+        mainActivity.InitProfileImageOnLoad(view);
 
 
         return view;

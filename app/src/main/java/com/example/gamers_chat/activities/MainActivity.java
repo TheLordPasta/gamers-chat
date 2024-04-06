@@ -1,8 +1,11 @@
 package com.example.gamers_chat.activities;
 
+import static android.provider.MediaStore.Images.Thumbnails.getThumbnail;
 import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
@@ -57,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
             if (result.getResultCode() == RESULT_OK) {
                 if (result.getData() != null) {
                     image = result.getData().getData();
-                    uploadImageButtom.setEnabled(true);
+                    //uploadImageButtom.setEnabled(true);
                     Glide.with(getApplicationContext()).load(image).into(imageView);
                 }
             } else {
@@ -203,8 +206,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void uploadImage(Uri file) {
         StorageReference ref = storageRef.child(String.format("image/%s/",currentUserUID) + "profilePic");
-        StorageReference folderRef = storageRef.child(String.format("image/%s/profilePic",currentUserUID));
-        folderRef.delete();
+
         ref.putFile(file).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
@@ -223,4 +225,27 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
+    public void InitProfileImageOnLoad(View view)
+    {
+        StorageReference ref = storageRef.child(String.format("image/%s/",currentUserUID) + "profilePic");
+
+        final long ONE_MEGABYTE = 1024 * 1024;
+        ref.getBytes(ONE_MEGABYTE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
+                @Override
+                public void onSuccess(byte[] bytes) {
+                    // Data for "images/island.jpg" is returns, use this as needed
+                    Bitmap bmp = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+                    imageView.setImageBitmap(bmp);
+                }
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception exception) {
+                    // Handle any errors
+                }
+            });
+
+
+    }
+
 }
