@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:background="#B6A9E6"
     android:orientation="vertical"
-    tools:context=".fragments.UserProfile">
+    tools:context=".fragments.UserProfileFragment">
 
     <LinearLayout
         android:layout_width="match_parent"

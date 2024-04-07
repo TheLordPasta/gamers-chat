@@ -1,6 +1,5 @@
 package com.example.gamers_chat.fragments;
 
-import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -8,17 +7,16 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toolbar;
 
 import com.example.gamers_chat.R;
 import com.example.gamers_chat.activities.MainActivity;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link UserProfile#newInstance} factory method to
+ * Use the {@link UserProfileFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class UserProfile extends Fragment {
+public class UserProfileFragment extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -30,7 +28,7 @@ public class UserProfile extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public UserProfile() {
+    public UserProfileFragment() {
         // Required empty public constructor
     }
 
@@ -43,8 +41,8 @@ public class UserProfile extends Fragment {
      * @return A new instance of fragment UserProfile.
      */
     // TODO: Rename and change types and number of parameters
-    public static UserProfile newInstance(String param1, String param2) {
-        UserProfile fragment = new UserProfile();
+    public static UserProfileFragment newInstance(String param1, String param2) {
+        UserProfileFragment fragment = new UserProfileFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
