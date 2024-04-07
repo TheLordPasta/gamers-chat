@@ -105,7 +105,7 @@ public class MainActivity extends AppCompatActivity {
     public void CreateGameList(View view)
     {
 
-        recyclerViewGames =  view.findViewById(R.id.resView);
+        recyclerViewGames =  view.findViewById(R.id.recView);
         layoutManager = new LinearLayoutManager(this);
         recyclerViewGames.setLayoutManager(layoutManager);
 
@@ -157,7 +157,7 @@ public class MainActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String searchQuery = ((EditText) findViewById(R.id.editTextText)).getText().toString().trim();
+                String searchQuery = ((EditText) findViewById(R.id.gamesSearchInput)).getText().toString().trim();
                 gameAdapter.filter(searchQuery);
             }
         });
@@ -199,9 +199,9 @@ public class MainActivity extends AppCompatActivity {
                 TextView dialogTextViewVersion = dialog.findViewById(R.id.dialogTextViewVersion);
 
                 // Set the data from the clicked item to the dialog views
-                dialogImageView.setImageResource(userProfile.getImage());
-                dialogTextViewName.setText(userProfile.getName());
-                dialogTextViewVersion.setText(userProfile.getPrice());
+                dialogImageView.setImageResource(userProfile.getProfilePhoto());
+                dialogTextViewName.setText(userProfile.getNickName());
+                dialogTextViewVersion.setText(userProfile.getBio());
 
                 // Display the custom dialog
                 dialog.show();
@@ -215,7 +215,7 @@ public class MainActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String searchQuery = ((EditText) findViewById(R.id.editTextText)).getText().toString().trim();
+                String searchQuery = ((EditText) findViewById(R.id.gamesSearchInput)).getText().toString().trim();
                 userAdapter.filter(searchQuery);
             }
         });
@@ -280,7 +280,7 @@ public class MainActivity extends AppCompatActivity {
 
                                     fetchUserDetails(user);
                                     //updateUI(user);
-                                    Navigation.findNavController(v).navigate(R.id.action_login_to_userProfile);
+                                    Navigation.findNavController(v).navigate(R.id.action_login_to_mainMenu);
                                 } else {
                                     // If sign in fails, display a message to the user.
                                     Log.w(TAG, "signInWithEmail:failure", task.getException());
@@ -323,7 +323,7 @@ public class MainActivity extends AppCompatActivity {
 
         progressIndicator = view.findViewById(R.id.progress);
 
-        imageView = view.findViewById(R.id.imageView);
+        imageView = view.findViewById(R.id.profileImageView);
         selectImageButtom = view.findViewById(R.id.selectImage);
         uploadImageButtom = view.findViewById(R.id.uploadImage);
         selectImageButtom.setOnClickListener(new View.OnClickListener() {

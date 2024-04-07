@@ -37,18 +37,19 @@
                 android:layout_below="@id/toolbar" />
 
             <ImageView
-                android:id="@+id/imageView"
+                android:id="@+id/profileImageView"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:layout_below="@id/progress"
                 android:layout_marginTop="21dp"
+                android:scaleType="centerInside"
                 app:srcCompat="@android:drawable/sym_def_app_icon" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/selectImage"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/imageView"
+                android:layout_below="@id/profileImageView"
                 android:layout_margin="10sp"
                 android:layout_marginTop="11dp"
                 android:layout_marginBottom="10sp"
@@ -69,7 +70,7 @@
                 android:layout_alignParentTop="true"
                 android:layout_marginStart="23dp"
                 android:layout_marginTop="88dp"
-                android:layout_toEndOf="@+id/imageView"
+                android:layout_toEndOf="@+id/profileImageView"
                 android:gravity="center"
                 tools:text="User Nickname" />
 
@@ -80,7 +81,7 @@
                 android:layout_below="@+id/profileNickNameView"
                 android:layout_marginStart="23dp"
                 android:layout_marginTop="15dp"
-                android:layout_toEndOf="@+id/imageView"
+                android:layout_toEndOf="@+id/profileImageView"
                 android:gravity="center"
                 android:textAlignment="viewStart"
                 tools:text="User Bio" />
@@ -93,7 +94,7 @@
                 android:layout_marginStart="50dp"
                 android:layout_marginTop="256dp"
                 android:layout_toEndOf="@+id/selectImage"
-                android:text="Games"
+                android:text="Search Games"
                 android:textAlignment="viewStart" />
 
             <Button
@@ -109,5 +110,10 @@
         </RelativeLayout>
 
     </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"/>
 
 </LinearLayout>

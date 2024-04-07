@@ -14,8 +14,8 @@
             android:id="@+id/action_login_to_register"
             app:destination="@id/register" />
         <action
-            android:id="@+id/action_login_to_userProfile"
-            app:destination="@id/userProfile" />
+            android:id="@+id/action_login_to_mainMenu"
+            app:destination="@id/mainMenu" />
     </fragment>
     <fragment
         android:id="@+id/register"
@@ -31,4 +31,29 @@
         android:name="com.example.gamers_chat.fragments.UserProfileFragment"
         android:label="fragment_user_profile"
         tools:layout="@layout/fragment_user_profile" />
+    <fragment
+        android:id="@+id/mainMenu"
+        android:name="com.example.gamers_chat.fragments.mainMenu"
+        android:label="fragment_main_menu"
+        tools:layout="@layout/fragment_main_menu" >
+        <action
+            android:id="@+id/action_mainMenu_to_userProfile"
+            app:destination="@id/userProfile" />
+        <action
+            android:id="@+id/action_mainMenu_to_gameSearch"
+            app:destination="@id/gameSearch" />
+        <action
+            android:id="@+id/action_mainMenu_to_userSearch"
+            app:destination="@id/userSearch" />
+    </fragment>
+    <fragment
+        android:id="@+id/gameSearch"
+        android:name="com.example.gamers_chat.fragments.gameSearch"
+        android:label="fragment_search_game"
+        tools:layout="@layout/fragment_search_game" />
+    <fragment
+        android:id="@+id/userSearch"
+        android:name="com.example.gamers_chat.fragments.userSearch"
+        android:label="fragment_search_user"
+        tools:layout="@layout/fragment_search_user" />
 </navigation>

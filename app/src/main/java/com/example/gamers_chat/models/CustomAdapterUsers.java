@@ -42,17 +42,13 @@ public class CustomAdapterUsers extends RecyclerView.Adapter<CustomAdapterUsers.
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
 
-        TextView textViewName;
-        TextView textViewVersion;
-        ImageView imageView;
-        TextView amountView;
+        TextView userNameTextView;
+        ImageView userProfilePicTextView;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
-            textViewName = itemView.findViewById(R.id.productName);
-            textViewVersion = itemView.findViewById(R.id.price);
-            imageView = itemView.findViewById(R.id.imageView);
-            amountView = itemView.findViewById(R.id.textAmount);
+            userNameTextView = itemView.findViewById(R.id.userCardNameTextView);
+            userProfilePicTextView = itemView.findViewById(R.id.userCardProfileImageView);
         }
 
     }
@@ -60,7 +56,7 @@ public class CustomAdapterUsers extends RecyclerView.Adapter<CustomAdapterUsers.
     @NonNull
     @Override
     public CustomAdapterUsers.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.cardrow, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.cardrow_user, parent, false);
         MyViewHolder myViewHolder = new MyViewHolder(view);
 
         return myViewHolder;
@@ -69,9 +65,8 @@ public class CustomAdapterUsers extends RecyclerView.Adapter<CustomAdapterUsers.
     @Override
     public void onBindViewHolder(@NonNull CustomAdapterUsers.MyViewHolder holder, int position) {
 
-        holder.textViewName.setText(dataSet.get(position).getName());
-        holder.textViewVersion.setText(dataSet.get(position).getPrice());
-        holder.imageView.setImageResource(dataSet.get(position).getImage());
+        holder.userNameTextView.setText(dataSet.get(position).getNickName());
+        holder.userProfilePicTextView.setImageResource(dataSet.get(position).getProfilePhoto());
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override

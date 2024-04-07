@@ -40,17 +40,17 @@ public class CustomAdapterGames extends RecyclerView.Adapter<CustomAdapterGames.
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
 
-        TextView textViewName;
-        TextView textViewVersion;
-        ImageView imageView;
-        TextView amountView;
+        TextView nameTextView;
+        TextView publisherTextView;
+        ImageView bannerImageView;
+        TextView platformTextView;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
-            textViewName = itemView.findViewById(R.id.productName);
-            textViewVersion = itemView.findViewById(R.id.price);
-            imageView = itemView.findViewById(R.id.imageView);
-            amountView = itemView.findViewById(R.id.textAmount);
+            nameTextView = itemView.findViewById(R.id.gameCardNameTextView);
+            publisherTextView = itemView.findViewById(R.id.gameCardPublisherTextView);
+            bannerImageView = itemView.findViewById(R.id.gameCardImageView);
+            platformTextView = itemView.findViewById(R.id.gameCardPlatformTextView);
         }
 
     }
@@ -58,7 +58,7 @@ public class CustomAdapterGames extends RecyclerView.Adapter<CustomAdapterGames.
     @NonNull
     @Override
     public CustomAdapterGames.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.cardrow, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.cardrow_game, parent, false);
         MyViewHolder myViewHolder = new MyViewHolder(view);
 
         return myViewHolder;
@@ -67,9 +67,9 @@ public class CustomAdapterGames extends RecyclerView.Adapter<CustomAdapterGames.
     @Override
     public void onBindViewHolder(@NonNull CustomAdapterGames.MyViewHolder holder, int position) {
 
-        holder.textViewName.setText(dataSet.get(position).getName());
-        holder.textViewVersion.setText(dataSet.get(position).getPrice());
-        holder.imageView.setImageResource(dataSet.get(position).getImage());
+        holder.nameTextView.setText(dataSet.get(position).getGameName());
+        holder.publisherTextView.setText(dataSet.get(position).getPublisher());
+        holder.bannerImageView.setImageResource(dataSet.get(position).getBannerImage());
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
