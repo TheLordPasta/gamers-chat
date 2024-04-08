@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import com.example.gamers_chat.R;
 import com.example.gamers_chat.activities.MainActivity;
@@ -66,9 +67,10 @@ public class UserProfileFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_user_profile, container, false);
         MainActivity mainActivity = (MainActivity) getActivity();
+        ImageView profileImageView = view.findViewById(R.id.profileImageView);
 
         mainActivity.InitProfileImage(view);
-        mainActivity.InitProfileImageOnLoad(view);
+       profileImageView.setImageBitmap(mainActivity.InitProfileImageOnLoad(view));
 
 
         return view;

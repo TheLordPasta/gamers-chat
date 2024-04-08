@@ -9,8 +9,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 
 import com.example.gamers_chat.R;
+import com.example.gamers_chat.activities.MainActivity;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -67,8 +69,12 @@ public class mainMenu extends Fragment {
 
         Button moveToGameSearch = view.findViewById(R.id.mainMenuGameSearchBtn);
         Button moveToUserSearch = view.findViewById(R.id.mainMenuUserSearchBtn);
-        Button moveToUserProfile = view.findViewById(R.id.mainMenuUserProfileBtn);
-        Button moveToOptionsMenu = view.findViewById(R.id.mainMenuOptionsMenuBtn);
+        ImageButton moveToUserProfile = view.findViewById(R.id.mainMenuUserProfileBtn);
+        ImageButton moveToOptionsMenu = view.findViewById(R.id.mainMenuOptionsMenuBtn);
+
+        MainActivity mainActivity = (MainActivity) getActivity();
+
+        moveToUserProfile.setImageBitmap(mainActivity.InitProfileImageOnLoad(view));
 
         moveToUserProfile.setOnClickListener(new View.OnClickListener() {
             @Override

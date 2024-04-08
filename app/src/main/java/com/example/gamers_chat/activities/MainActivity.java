@@ -105,7 +105,7 @@ public class MainActivity extends AppCompatActivity {
     public void CreateGameList(View view)
     {
 
-        recyclerViewGames =  view.findViewById(R.id.recView);
+        recyclerViewGames =  view.findViewById(R.id.gamesSearchRecyclerView);
         layoutManager = new LinearLayoutManager(this);
         recyclerViewGames.setLayoutManager(layoutManager);
 
@@ -130,17 +130,17 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onItemClick(GameProfile gameProfile) {
                 final Dialog dialog = new Dialog(MainActivity.this);
-                dialog.setContentView(R.layout.dialog_item_details);
+                dialog.setContentView(R.layout.fragment_game);
 
                 // Initialize the views in the custom dialog layout
-                ImageView dialogImageView = dialog.findViewById(R.id.dialogImageView);
-                TextView dialogTextViewName = dialog.findViewById(R.id.dialogTextViewName);
-                TextView dialogTextViewVersion = dialog.findViewById(R.id.dialogTextViewVersion);
+                ImageView dialogImageView = dialog.findViewById(R.id.gameGameImageView);
+                TextView dialogTextViewName = dialog.findViewById(R.id.gameGameNameView);
+                TextView dialogTextViewVersion = dialog.findViewById(R.id.gamePublisherTextView);
 
                 // Set the data from the clicked item to the dialog views
-                dialogImageView.setImageResource(gameProfile.getImage());
-                dialogTextViewName.setText(gameProfile.getName());
-                dialogTextViewVersion.setText(gameProfile.getPrice());
+                dialogImageView.setImageResource(gameProfile.getBannerImage());
+                dialogTextViewName.setText(gameProfile.getGameName());
+                dialogTextViewVersion.setText(gameProfile.getPublisher());
 
                 // Display the custom dialog
                 dialog.show();
@@ -151,7 +151,7 @@ public class MainActivity extends AppCompatActivity {
         });
         recyclerViewGames.setAdapter(gameAdapter);
 
-        Button button = view.findViewById(R.id.searchButt);
+        Button button = view.findViewById(R.id.gamesListSearchButton);
 
         // Set onClickListener to the button
         button.setOnClickListener(new View.OnClickListener() {
@@ -163,63 +163,63 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    public void CreateUserList(View view)
-    {
-
-        recyclerViewUsers =  view.findViewById(R.id.resView);
-        layoutManager = new LinearLayoutManager(this);
-        recyclerViewUsers.setLayoutManager(layoutManager);
-
-
-        recyclerViewUsers.setItemAnimator(new DefaultItemAnimator());
-
-        if (dataSetUsers == null) {
-            dataSetUsers = new ArrayList<>();
-            for ( int i =0 ; i < gameList.nameArray.length ; i++) {
-                dataSetUsers.add(new UserProfile(
-                        gameList.nameArray[i],
-                        gameList.priceArray[i],
-                        gameList.drawableArray[i],
-                        gameList.id_[i],//its not supposed to be a game list, we need to take the user list from fucking firebase!!
-                        0
-                ));
-            }
-        }
-
-
-        userAdapter = new CustomAdapterUsers(dataSetUsers, new CustomAdapterUsers.OnItemClickListener() {
-            @Override
-            public void onItemClick(UserProfile userProfile) {
-                final Dialog dialog = new Dialog(MainActivity.this);
-                dialog.setContentView(R.layout.dialog_item_details);
-
-                // Initialize the views in the custom dialog layout
-                ImageView dialogImageView = dialog.findViewById(R.id.dialogImageView);
-                TextView dialogTextViewName = dialog.findViewById(R.id.dialogTextViewName);
-                TextView dialogTextViewVersion = dialog.findViewById(R.id.dialogTextViewVersion);
-
-                // Set the data from the clicked item to the dialog views
-                dialogImageView.setImageResource(userProfile.getProfilePhoto());
-                dialogTextViewName.setText(userProfile.getNickName());
-                dialogTextViewVersion.setText(userProfile.getBio());
-
-                // Display the custom dialog
-                dialog.show();
-            }
-        });
-        recyclerViewUsers.setAdapter(userAdapter);
-
-        Button button = view.findViewById(R.id.searchButt);
-
-        // Set onClickListener to the button
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String searchQuery = ((EditText) findViewById(R.id.gamesSearchInput)).getText().toString().trim();
-                userAdapter.filter(searchQuery);
-            }
-        });
-    }
+//    public void CreateUserList(View view)
+//    {
+//
+//        recyclerViewUsers =  view.findViewById(R.id.userSearchRecyclerView);
+//        layoutManager = new LinearLayoutManager(this);
+//        recyclerViewUsers.setLayoutManager(layoutManager);
+//
+//
+//        recyclerViewUsers.setItemAnimator(new DefaultItemAnimator());
+//
+////        if (dataSetUsers == null) {
+////            dataSetUsers = new ArrayList<>();
+////            for ( int i =0 ; i < gameList.nameArray.length ; i++) {
+////                dataSetUsers.add(new UserProfile(
+////                        gameList.nameArray[i],
+////                        gameList.priceArray[i],
+////                        gameList.drawableArray[i],
+////                        gameList.id_[i],//its not supposed to be a game list, we need to take the user list from fucking firebase!!
+////                        0
+////                ));
+////            }
+////        }
+//
+//
+//        userAdapter = new CustomAdapterUsers(dataSetUsers, new CustomAdapterUsers.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(UserProfile userProfile) {
+//                final Dialog dialog = new Dialog(MainActivity.this);
+//                dialog.setContentView(R.layout.dialog_item_details);
+//
+//                // Initialize the views in the custom dialog layout
+//                ImageView dialogImageView = dialog.findViewById(R.id.dialogImageView);
+//                TextView dialogTextViewName = dialog.findViewById(R.id.dialogTextViewName);
+//                TextView dialogTextViewVersion = dialog.findViewById(R.id.dialogTextViewVersion);
+//
+//                // Set the data from the clicked item to the dialog views
+//                dialogImageView.setImageResource(userProfile.getProfilePhoto());
+//                dialogTextViewName.setText(userProfile.getNickName());
+//                dialogTextViewVersion.setText(userProfile.getBio());
+//
+//                // Display the custom dialog
+//                dialog.show();
+//            }
+//        });
+//        recyclerViewUsers.setAdapter(userAdapter);
+//
+//        Button button = view.findViewById(R.id.searchButt);
+//
+//        // Set onClickListener to the button
+//        button.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                String searchQuery = ((EditText) findViewById(R.id.gamesSearchInput)).getText().toString().trim();
+//                userAdapter.filter(searchQuery);
+//            }
+//        });
+//    }
     public void registerUserData() {
             EditText userEmail = this.findViewById(R.id.emailInput);
             EditText userPass = this.findViewById(R.id.passwordInput);
@@ -365,7 +365,9 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    public void InitProfileImageOnLoad(View view)
+    Bitmap tempBMP = null;
+
+    public Bitmap InitProfileImageOnLoad(View view)
     {
         StorageReference ref = storageRef.child(String.format("image/%s/",currentUserUID) + "profilePic");
 
@@ -374,8 +376,7 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void onSuccess(byte[] bytes) {
                     // Data for "images/island.jpg" is returns, use this as needed
-                    Bitmap bmp = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
-                    imageView.setImageBitmap(bmp);
+                    tempBMP = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
                 }
             }).addOnFailureListener(new OnFailureListener() {
                 @Override
@@ -384,7 +385,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             });
 
-
+        return tempBMP;
     }
 
 }
