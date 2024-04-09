@@ -68,13 +68,10 @@ public class mainMenu extends Fragment {
         View view = inflater.inflate(R.layout.fragment_main_menu, container, false);
 
         Button moveToGameSearch = view.findViewById(R.id.mainMenuGameSearchBtn);
-        Button moveToUserSearch = view.findViewById(R.id.mainMenuUserSearchBtn);
-        ImageButton moveToUserProfile = view.findViewById(R.id.mainMenuUserProfileBtn);
-        ImageButton moveToOptionsMenu = view.findViewById(R.id.mainMenuOptionsMenuBtn);
+        Button moveToUserProfile = view.findViewById(R.id.mainMenuUserProfileBtn);
 
         MainActivity mainActivity = (MainActivity) getActivity();
 
-        moveToUserProfile.setImageBitmap(mainActivity.InitProfileImageOnLoad(view));
 
         moveToUserProfile.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -90,12 +87,7 @@ public class mainMenu extends Fragment {
             }
         });
 
-        moveToUserSearch.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Navigation.findNavController(v).navigate(R.id.action_mainMenu_to_userSearch);
-            }
-        });
+
 
         return view;
     }

@@ -61,6 +61,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/selectImage"
                 android:layout_marginTop="-2dp"
+                android:enabled="false"
                 android:text="Upload Image" />
 
             <TextView
@@ -96,16 +97,6 @@
                 android:layout_toEndOf="@+id/selectImage"
                 android:text="Search Games"
                 android:textAlignment="viewStart" />
-
-            <Button
-                android:id="@+id/toChats"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
-                android:layout_marginStart="17dp"
-                android:layout_marginTop="256dp"
-                android:layout_toEndOf="@+id/goToGamesListbutton"
-                android:text="chats" />
 
         </RelativeLayout>
 

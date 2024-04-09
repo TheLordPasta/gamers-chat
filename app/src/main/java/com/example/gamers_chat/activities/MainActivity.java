@@ -32,7 +32,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.gamers_chat.R;
 import com.example.gamers_chat.models.CustomAdapterGames;
-import com.example.gamers_chat.models.CustomAdapterUsers;
 import com.example.gamers_chat.models.GameProfile;
 import com.example.gamers_chat.models.User;
 import com.example.gamers_chat.models.UserProfile;
@@ -73,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
             if (result.getResultCode() == RESULT_OK) {
                 if (result.getData() != null) {
                     image = result.getData().getData();
-                    //uploadImageButtom.setEnabled(true);
+                    uploadImageButtom.setEnabled(true);
                     Glide.with(getApplicationContext()).load(image).into(imageView);
                 }
             } else {
@@ -85,12 +84,9 @@ public class MainActivity extends AppCompatActivity {
     public String currentUserUID;
 
     public ArrayList<GameProfile> dataSetGames;
-    public ArrayList<UserProfile> dataSetUsers;
     private RecyclerView recyclerViewGames;
-    private RecyclerView recyclerViewUsers;
     private LinearLayoutManager layoutManager;
     private CustomAdapterGames gameAdapter;
-    private CustomAdapterUsers userAdapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -163,63 +159,6 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-//    public void CreateUserList(View view)
-//    {
-//
-//        recyclerViewUsers =  view.findViewById(R.id.userSearchRecyclerView);
-//        layoutManager = new LinearLayoutManager(this);
-//        recyclerViewUsers.setLayoutManager(layoutManager);
-//
-//
-//        recyclerViewUsers.setItemAnimator(new DefaultItemAnimator());
-//
-////        if (dataSetUsers == null) {
-////            dataSetUsers = new ArrayList<>();
-////            for ( int i =0 ; i < gameList.nameArray.length ; i++) {
-////                dataSetUsers.add(new UserProfile(
-////                        gameList.nameArray[i],
-////                        gameList.priceArray[i],
-////                        gameList.drawableArray[i],
-////                        gameList.id_[i],//its not supposed to be a game list, we need to take the user list from fucking firebase!!
-////                        0
-////                ));
-////            }
-////        }
-//
-//
-//        userAdapter = new CustomAdapterUsers(dataSetUsers, new CustomAdapterUsers.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(UserProfile userProfile) {
-//                final Dialog dialog = new Dialog(MainActivity.this);
-//                dialog.setContentView(R.layout.dialog_item_details);
-//
-//                // Initialize the views in the custom dialog layout
-//                ImageView dialogImageView = dialog.findViewById(R.id.dialogImageView);
-//                TextView dialogTextViewName = dialog.findViewById(R.id.dialogTextViewName);
-//                TextView dialogTextViewVersion = dialog.findViewById(R.id.dialogTextViewVersion);
-//
-//                // Set the data from the clicked item to the dialog views
-//                dialogImageView.setImageResource(userProfile.getProfilePhoto());
-//                dialogTextViewName.setText(userProfile.getNickName());
-//                dialogTextViewVersion.setText(userProfile.getBio());
-//
-//                // Display the custom dialog
-//                dialog.show();
-//            }
-//        });
-//        recyclerViewUsers.setAdapter(userAdapter);
-//
-//        Button button = view.findViewById(R.id.searchButt);
-//
-//        // Set onClickListener to the button
-//        button.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                String searchQuery = ((EditText) findViewById(R.id.gamesSearchInput)).getText().toString().trim();
-//                userAdapter.filter(searchQuery);
-//            }
-//        });
-//    }
     public void registerUserData() {
             EditText userEmail = this.findViewById(R.id.emailInput);
             EditText userPass = this.findViewById(R.id.passwordInput);
