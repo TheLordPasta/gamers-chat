@@ -9,6 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 
+import com.bumptech.glide.Glide;
 import com.example.gamers_chat.R;
 public class CustomAdapterGames extends RecyclerView.Adapter<CustomAdapterGames.MyViewHolder> {
 
@@ -45,13 +46,34 @@ public class CustomAdapterGames extends RecyclerView.Adapter<CustomAdapterGames.
         ImageView bannerImageView;
         TextView platformTextView;
 
+        ListItemBinding binding;
+
+
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
-            nameTextView = itemView.findViewById(R.id.gameCardNameTextView);
-            publisherTextView = itemView.findViewById(R.id.gameCardPublisherTextView);
-            bannerImageView = itemView.findViewById(R.id.gameCardImageView);
-            platformTextView = itemView.findViewById(R.id.gameCardPlatformTextView);
+           // nameTextView = itemView.findViewById(R.id.gameCardNameTextView);
+            //publisherTextView = itemView.findViewById(R.id.gameCardPublisherTextView);
+            //bannerImageView = itemView.findViewById(R.id.gameCardImageView);
+            //platformTextView = itemView.findViewById(R.id.gameCardPlatformTextView);
+
+            super(binding.getRoot());
+            this.binding = binding;
+
         }
+
+        public void bind(GameModel game) {
+            binding.title.setText(game.title);
+            Glide.with(this.itemView.getContext())
+                    .load(game.thumbnail)
+                    .into(binding.gameImage);
+            binding.genre.setText(game.genre);
+            binding.description.setText(game.short_description);
+            binding.platform.setText(game.platform);
+            binding.publisher.setText(game.publisher);
+            binding.developer.setText(game.developer);
+            binding.releaseDate.setText(game.release_date);
+        }
+
 
     }
 

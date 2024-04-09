@@ -3,33 +3,39 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#75052B"
+    android:foregroundTint="#F3E2E8"
     android:orientation="vertical"
-    tools:context=".fragments.gameSearch" >
+    tools:context=".fragments.gameSearch">
 
-        <LinearLayout
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="75dp"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/gamesSearchInput"
             android:layout_width="match_parent"
-            android:layout_height="75dp"
-            android:orientation="horizontal">
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:drawableTint="#EFE5E5"
+            android:ems="10"
+            android:hint="Search Game"
+            android:inputType="text"
+            android:shadowColor="#FFC107" />
 
-            <EditText
-                android:id="@+id/gamesSearchInput"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:ems="10"
-                android:hint="Search Game"
-                android:inputType="text" />
-
-            <Button
-                android:id="@+id/gamesListSearchButton"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:text="Search" />
-        </LinearLayout>
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/gamesSearchRecyclerView"
+        <Button
+            android:id="@+id/gamesListSearchButton"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="#9C27B0"
+            android:backgroundTint="#FFC107"
+            android:text="Search" />
     </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/gamesSearchRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+</LinearLayout>
