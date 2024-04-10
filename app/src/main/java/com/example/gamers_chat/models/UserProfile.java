@@ -7,9 +7,9 @@ public class UserProfile {
     private String nickName;
     private String bio;
     private int profilePhoto; // Integer
-    private List<GameProfile> favoriteGames;
+    private List<GameModel> favoriteGames;
 
-    public UserProfile(String nickName, String bio, int profilePhoto, int id_, List<GameProfile> favoriteGames) {
+    public UserProfile(String nickName, String bio, int profilePhoto, int id_, List<GameModel> favoriteGames) {
         this.nickName = nickName;
         this.bio = bio;
         this.profilePhoto = profilePhoto;
@@ -40,7 +40,7 @@ public class UserProfile {
         return profilePhoto;
     }
 
-    public List<GameProfile> getFavoriteGames() {
+    public List<GameModel> getFavoriteGames() {
         return favoriteGames;
     }
 }

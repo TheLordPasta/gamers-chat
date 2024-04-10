@@ -2,8 +2,7 @@ package com.example.gamers_chat.activities;
 
 import static android.provider.MediaStore.Images.Thumbnails.getThumbnail;
 import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
-
-import android.app.Dialog;
+import androidx.lifecycle.Observer;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -14,7 +13,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.widget.Toolbar;
 
@@ -24,6 +22,7 @@ import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;   
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.MutableLiveData;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -32,10 +31,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.gamers_chat.R;
 import com.example.gamers_chat.models.CustomAdapterGames;
-import com.example.gamers_chat.models.GameProfile;
+import com.example.gamers_chat.models.GameModel;
 import com.example.gamers_chat.models.User;
-import com.example.gamers_chat.models.UserProfile;
-import com.example.gamers_chat.models.gameList;
+import com.example.gamers_chat.repository.NetworkRepository;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -83,10 +81,11 @@ public class MainActivity extends AppCompatActivity {
     public User currentUser;
     public String currentUserUID;
 
-    public ArrayList<GameProfile> dataSetGames;
+    public ArrayList<GameModel> gameList;
     private RecyclerView recyclerViewGames;
     private LinearLayoutManager layoutManager;
     private CustomAdapterGames gameAdapter;
+    private NetworkRepository repository;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -104,43 +103,35 @@ public class MainActivity extends AppCompatActivity {
         recyclerViewGames =  view.findViewById(R.id.gamesSearchRecyclerView);
         layoutManager = new LinearLayoutManager(this);
         recyclerViewGames.setLayoutManager(layoutManager);
-
-
         recyclerViewGames.setItemAnimator(new DefaultItemAnimator());
 
-        if (dataSetGames == null) {
-            dataSetGames = new ArrayList<>();
-            for ( int i =0 ; i < gameList.gameNames.length ; i++) {
-                dataSetGames.add(new GameProfile(
-                        gameList.gameNames[i],
-                        gameList.gameDescriptions[i],
-                        gameList.gamePlatforms[i],
-                        gameList.gamePublishers[i],
-                        gameList.gameBannerDrawables[i]
-                ));
-            }
-        }
+        repository = new NetworkRepository();
 
 
-        gameAdapter = new CustomAdapterGames(dataSetGames, new CustomAdapterGames.OnItemClickListener() {
+        // Call method to fetch games
+        MutableLiveData<ArrayList<GameModel>> temp = repository.getGames();
+        gameList = temp.getValue();
+//        if (dataSetGames == null) {
+//            dataSetGames = new ArrayList<>();
+//            for ( int i =0 ; i < gameList.gameNames.length ; i++) {
+//                dataSetGames.add(new GameModel(
+//                        gameList.gameNames[i],
+//                        gameList.gameDescriptions[i],
+//                        gameList.gamePlatforms[i],
+//                        gameList.gamePublishers[i],
+//                        gameList.gameBannerDrawables[i]
+//                ));
+//            }
+//        }
+
+
+
+
+        gameAdapter = new CustomAdapterGames(gameList, new CustomAdapterGames.OnItemClickListener() {
+
             @Override
-            public void onItemClick(GameProfile gameProfile) {
-                final Dialog dialog = new Dialog(MainActivity.this);
-                dialog.setContentView(R.layout.fragment_game);
-
-                // Initialize the views in the custom dialog layout
-                ImageView dialogImageView = dialog.findViewById(R.id.gameGameImageView);
-                TextView dialogTextViewName = dialog.findViewById(R.id.gameGameNameView);
-                TextView dialogTextViewVersion = dialog.findViewById(R.id.gamePublisherTextView);
-
-                // Set the data from the clicked item to the dialog views
-                dialogImageView.setImageResource(gameProfile.getBannerImage());
-                dialogTextViewName.setText(gameProfile.getGameName());
-                dialogTextViewVersion.setText(gameProfile.getPublisher());
-
-                // Display the custom dialog
-                dialog.show();
-
+            public void onItemClick(GameModel gameModel) {
+                System.out.println(gameModel.title);
 
                 //navigation to game fragment instead of the bullshit on top ^^^
             }
@@ -304,9 +295,8 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    Bitmap tempBMP = null;
 
-    public Bitmap InitProfileImageOnLoad(View view)
+    public void InitProfileImageOnLoad(View view)
     {
         StorageReference ref = storageRef.child(String.format("image/%s/",currentUserUID) + "profilePic");
 
@@ -315,7 +305,8 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void onSuccess(byte[] bytes) {
                     // Data for "images/island.jpg" is returns, use this as needed
-                    tempBMP = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+                    Bitmap bmp = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+                    imageView.setImageBitmap(bmp);
                 }
             }).addOnFailureListener(new OnFailureListener() {
                 @Override
@@ -324,7 +315,6 @@ public class MainActivity extends AppCompatActivity {
                 }
             });
 
-        return tempBMP;
     }
 
 }

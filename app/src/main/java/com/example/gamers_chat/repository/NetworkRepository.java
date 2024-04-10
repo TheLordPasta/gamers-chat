@@ -34,8 +34,11 @@ public class NetworkRepository implements INetworkRepository {
 
         data.enqueue(new Callback<ArrayList<GameModel>>() {
 
+
             @Override
             public void onResponse(Call<ArrayList<GameModel>> call, Response<ArrayList<GameModel>> response) {
+
+
                 if(response.code() == 200) {
                     appData.postValue(response.body());
                 }

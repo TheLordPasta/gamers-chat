@@ -1,9 +1,12 @@
 package com.example.gamers_chat.fragments;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,7 +14,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.gamers_chat.R;
-import com.example.gamers_chat.models.GameProfile;
+import com.example.gamers_chat.models.GameModel;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -29,7 +32,7 @@ public class gameFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    private GameProfile currentGame;
+    private GameModel currentGame;
 
     public gameFragment() {
         // Required empty public constructor
@@ -69,11 +72,14 @@ public class gameFragment extends Fragment {
         TextView gameDesc = view.findViewById(R.id.gameDescriptionTextView);
         ImageView gameImage = view.findViewById(R.id.gameGameImageView);
 
-        gameName.setText(currentGame.getGameName());
-        gamePublisher.setText(currentGame.getPublisher());
-        gamePlatform.setText(currentGame.getPlatform());
-        gameDesc.setText(currentGame.getDescription());
-        gameImage.setImageResource(currentGame.getBannerImage());
+        gameName.setText(currentGame.title);
+        gamePublisher.setText(currentGame.publisher);
+        gamePlatform.setText(currentGame.platform);
+        gameDesc.setText(currentGame.short_description);
+
+        byte [] encodeByte = Base64.decode(currentGame.thumbnail,Base64.DEFAULT);
+        Bitmap bmp = BitmapFactory.decodeByteArray(encodeByte, 0, encodeByte.length);
+        gameImage.setImageBitmap(bmp);
 
     }
 

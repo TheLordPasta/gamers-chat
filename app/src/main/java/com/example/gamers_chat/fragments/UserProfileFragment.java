@@ -70,7 +70,7 @@ public class UserProfileFragment extends Fragment {
         ImageView profileImageView = view.findViewById(R.id.profileImageView);
 
         mainActivity.InitProfileImage(view);
-       profileImageView.setImageBitmap(mainActivity.InitProfileImageOnLoad(view));
+        mainActivity.InitProfileImageOnLoad(view);
 
 
         return view;
