@@ -41,7 +41,9 @@
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:layout_below="@id/progress"
-                android:layout_marginTop="21dp"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="8dp"
                 android:scaleType="centerInside"
                 app:srcCompat="@android:drawable/sym_def_app_icon" />
 
@@ -60,32 +62,24 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/selectImage"
-                android:layout_marginTop="-2dp"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="9dp"
+                android:layout_marginTop="6dp"
                 android:enabled="false"
                 android:text="Upload Image" />
 
             <TextView
                 android:id="@+id/profileNickNameView"
-                android:layout_width="wrap_content"
+                android:layout_width="277dp"
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
-                android:layout_marginStart="23dp"
-                android:layout_marginTop="88dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="77dp"
                 android:layout_toEndOf="@+id/profileImageView"
                 android:gravity="center"
+                android:textAlignment="textStart"
+                android:textSize="48sp"
                 tools:text="User Nickname" />
-
-            <TextView
-                android:id="@+id/profileUserBioView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/profileNickNameView"
-                android:layout_marginStart="23dp"
-                android:layout_marginTop="15dp"
-                android:layout_toEndOf="@+id/profileImageView"
-                android:gravity="center"
-                android:textAlignment="viewStart"
-                tools:text="User Bio" />
 
             <Button
                 android:id="@+id/goToGamesListbutton"

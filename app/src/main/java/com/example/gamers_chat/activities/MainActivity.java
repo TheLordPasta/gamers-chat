@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.Toast;
 import androidx.appcompat.widget.Toolbar;
 
@@ -84,6 +85,7 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView recyclerViewGames;
     private LinearLayoutManager layoutManager;
     private CustomAdapterGames gameAdapter;
+    public GameModel currentGame;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -113,9 +115,10 @@ public class MainActivity extends AppCompatActivity {
         gameAdapter = new CustomAdapterGames(gameList, new CustomAdapterGames.OnItemClickListener() {
 
             @Override
-            public void onItemClick(GameModel gameModel) {
+            public void onItemClick(GameModel gameModel, View v) {
                 System.out.println(gameModel.title);
-
+                currentGame = gameModel;
+                Navigation.findNavController(v).navigate(R.id.action_gameSearch_to_gameFragment2);
                 //navigation to game fragment instead of the bullshit on top ^^^
             }
         });
@@ -128,7 +131,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String searchQuery = ((EditText) findViewById(R.id.gamesSearchInput)).getText().toString().trim();
-                gameAdapter.filter(searchQuery);
+                String searchBy = ((Spinner) findViewById(R.id.spinner)).getSelectedItem().toString();
+                gameAdapter.filter (searchQuery, searchBy);
             }
         });
     }
@@ -190,10 +194,9 @@ public class MainActivity extends AppCompatActivity {
                                     FirebaseUser user = mAuth.getCurrentUser();
 
                                     currentUserUID = user.getUid();
-
-                                    fetchUserDetails(user);
+                                    fetchUserDetails(user, v);
                                     //updateUI(user);
-                                    Navigation.findNavController(v).navigate(R.id.action_login_to_mainMenu);
+
                                 } else {
                                     // If sign in fails, display a message to the user.
                                     Log.w(TAG, "signInWithEmail:failure", task.getException());
@@ -205,7 +208,7 @@ public class MainActivity extends AppCompatActivity {
                         });
             }
 
-    private void fetchUserDetails(FirebaseUser firebaseUser) {
+    private void fetchUserDetails(FirebaseUser firebaseUser, View v) {
         if (firebaseUser != null) {
             String userId = firebaseUser.getUid();
             DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("users").child(userId);
@@ -215,14 +218,16 @@ public class MainActivity extends AppCompatActivity {
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                     User user = dataSnapshot.getValue(User.class);
                     if (user != null) {
-                        currentUser =user;
-                        // You can use this User object as needed
+                        currentUser = user;
+                        Navigation.findNavController(v).navigate(R.id.action_login_to_mainMenu);
+
                     }
                 }
 
                 @Override
                 public void onCancelled(@NonNull DatabaseError databaseError) {
-                    // Handle possible errors
+                    Toast.makeText(MainActivity.this, "Authentication failed, no user details",
+                            Toast.LENGTH_SHORT).show();
                 }
             });
         }

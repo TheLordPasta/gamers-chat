@@ -24,14 +24,28 @@ public class CustomAdapterGames extends RecyclerView.Adapter<CustomAdapterGames.
 
     }
 
-    public void filter(String query) {
+    public void filter(String query, String searchBy) {
         dataSet.clear(); // Clear the current dataset
+        boolean isContains = false;
         if (query.isEmpty()) {
             dataSet.addAll(originDataSet); // Use addAll to avoid reference copy
         } else {
             query = query.toLowerCase().trim();
             for (GameModel item : originDataSet) {
-                if (item.title.toLowerCase().trim().contains(query)) {
+                if(searchBy == "name") {
+                    isContains = item.title.toLowerCase().trim().contains(query);
+                }else if(searchBy == "genre") {
+                    isContains = item.genre.toLowerCase().trim().contains(query);
+                }else if (searchBy == "developer") {
+                    isContains = item.developer.toLowerCase().trim().contains(query);
+                }else if (searchBy == "year") {
+                    isContains = item.release_date.toLowerCase().trim().contains(query);
+                }else if (searchBy == "platform") {
+                    isContains = item.platform.toLowerCase().trim().contains(query);
+                }else if (searchBy == "publisher") {
+                    isContains = item.publisher.toLowerCase().trim().contains(query);
+                }
+                if (isContains == true) {
                     dataSet.add(item);
                 }
             }
@@ -68,20 +82,20 @@ public class CustomAdapterGames extends RecyclerView.Adapter<CustomAdapterGames.
     }
 
     @Override
-    public void onBindViewHolder(@NonNull CustomAdapterGames.MyViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull CustomAdapterGames.MyViewHolder holder, int i) {
 
-        holder.gameTitle.setText(dataSet.get(position).title);
-        holder.gameReleaseDate.setText(dataSet.get(position).release_date);
+        holder.gameTitle.setText(dataSet.get(i).title);
+        holder.gameReleaseDate.setText(dataSet.get(i).release_date);
 
         Glide.with(holder.itemView.getContext())
-                        .load(dataSet.get(position).thumbnail)
+                        .load(dataSet.get(i).thumbnail)
                         .into(holder.gameBannerThumbnail);
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (listener != null) {
-                    listener.onItemClick(dataSet.get(position));
+                    listener.onItemClick(dataSet.get(i), v);
                 }
             }
         });
@@ -93,7 +107,7 @@ public class CustomAdapterGames extends RecyclerView.Adapter<CustomAdapterGames.
     }
 
     public interface OnItemClickListener {
-        void onItemClick(GameModel gameProfile);
+        void onItemClick(GameModel gameProfile, View v);
     }
 
 }

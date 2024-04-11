@@ -30,7 +30,11 @@
         android:id="@+id/userProfile"
         android:name="com.example.gamers_chat.fragments.UserProfileFragment"
         android:label="fragment_user_profile"
-        tools:layout="@layout/fragment_user_profile" />
+        tools:layout="@layout/fragment_user_profile" >
+        <action
+            android:id="@+id/action_userProfile_to_gameSearch"
+            app:destination="@id/gameSearch" />
+    </fragment>
     <fragment
         android:id="@+id/mainMenu"
         android:name="com.example.gamers_chat.fragments.mainMenu"
@@ -42,18 +46,18 @@
         <action
             android:id="@+id/action_mainMenu_to_gameSearch"
             app:destination="@id/gameSearch" />
-        <action
-            android:id="@+id/action_mainMenu_to_userSearch"
-            app:destination="@id/userSearch" />
     </fragment>
     <fragment
         android:id="@+id/gameSearch"
         android:name="com.example.gamers_chat.fragments.gameSearch"
         android:label="fragment_search_game"
-        tools:layout="@layout/fragment_search_game" />
+        tools:layout="@layout/fragment_search_game" >
+        <action
+            android:id="@+id/action_gameSearch_to_gameFragment2"
+            app:destination="@id/gameFragment" />
+    </fragment>
     <fragment
-        android:id="@+id/userSearch"
-        android:name="com.example.gamers_chat.fragments.userSearch"
-        android:label="fragment_search_user"
-        tools:layout="@layout/fragment_search_user" />
+        android:id="@+id/gameFragment"
+        android:name="com.example.gamers_chat.fragments.gameFragment"
+        android:label="gameFragment" />
 </navigation>

@@ -2,6 +2,7 @@ package com.example.gamers_chat.fragments;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -13,7 +14,9 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.gamers_chat.R;
+import com.example.gamers_chat.activities.MainActivity;
 import com.example.gamers_chat.models.GameModel;
 
 /**
@@ -32,7 +35,7 @@ public class gameFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    private GameModel currentGame;
+
 
     public gameFragment() {
         // Required empty public constructor
@@ -64,22 +67,7 @@ public class gameFragment extends Fragment {
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
 
-        View view = this.getView();
 
-        TextView gameName = view.findViewById(R.id.gameGameNameView);
-        TextView gamePublisher = view.findViewById(R.id.gamePublisherTextView);
-        TextView gamePlatform = view.findViewById(R.id.gamePlatformTextView);
-        TextView gameDesc = view.findViewById(R.id.gameDescriptionTextView);
-        ImageView gameImage = view.findViewById(R.id.gameGameImageView);
-
-        gameName.setText(currentGame.title);
-        gamePublisher.setText(currentGame.publisher);
-        gamePlatform.setText(currentGame.platform);
-        gameDesc.setText(currentGame.short_description);
-
-        byte [] encodeByte = Base64.decode(currentGame.thumbnail,Base64.DEFAULT);
-        Bitmap bmp = BitmapFactory.decodeByteArray(encodeByte, 0, encodeByte.length);
-        gameImage.setImageBitmap(bmp);
 
     }
 
@@ -87,7 +75,31 @@ public class gameFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_game, container, false);
+        MainActivity mainActivity = (MainActivity) getActivity();
+        View view = inflater.inflate(R.layout.fragment_game, container, false);
+        TextView gameName = view.findViewById(R.id.text_title);
+        TextView gamePublisher = view.findViewById(R.id.text_publisher);
+        TextView gamePlatform = view.findViewById(R.id.text_platform);
+        TextView gameDesc = view.findViewById(R.id.text_description);
+        ImageView gameImage = view.findViewById(R.id.image_banner);
+        TextView gameGenre = view.findViewById(R.id.text_genre);
+        TextView gameReleaseDate = view.findViewById(R.id.text_release_date);
+        TextView gameUrl = view.findViewById(R.id.text_game_url);
+        TextView gameDeveloper = view.findViewById(R.id.text_developer);
 
+        gameName.setText(mainActivity.currentGame.title);
+        gamePublisher.setText(mainActivity.currentGame.publisher);
+        gamePlatform.setText(mainActivity.currentGame.platform);
+        gameDesc.setText(mainActivity.currentGame.short_description);
+        Glide.with(view.findViewById(R.id.game_profile).getContext())
+                .load(mainActivity.currentGame.thumbnail)
+                .into(gameImage);
+
+        gameGenre.setText(mainActivity.currentGame.genre);
+        gameReleaseDate.setText(mainActivity.currentGame.release_date);
+        gameUrl.setText(mainActivity.currentGame.game_url);
+        gameDeveloper.setText(mainActivity.currentGame.developer);
+
+        return view;
     }
 }

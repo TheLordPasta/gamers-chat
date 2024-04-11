@@ -7,6 +7,9 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
+import android.widget.Spinner;
 
 import com.example.gamers_chat.R;
 import com.example.gamers_chat.activities.MainActivity;
@@ -56,6 +59,8 @@ public class gameSearch extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
+
     }
 
     @Override
@@ -63,9 +68,11 @@ public class gameSearch extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_search_game, container, false);
-
+        String[] options = {"name", "genre", "developer", "year", "platform", "publisher"};
+        ArrayAdapter<String> adapterSpinner = new ArrayAdapter<>(requireContext(), android.R.layout.simple_dropdown_item_1line, options);
+        Spinner spinner = view.findViewById(R.id.spinner);
+        spinner.setAdapter(adapterSpinner);
         MainActivity mainActivity = (MainActivity) getActivity();
-
         mainActivity.CreateGameList(view);
 
         return view;

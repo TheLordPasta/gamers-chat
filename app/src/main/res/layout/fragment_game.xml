@@ -1,94 +1,187 @@
-<?xml version="1.0" encoding="utf-8"?>
+<!-- game_page_layout.xml -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/game_profile"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#274454"
     android:orientation="vertical">
 
+    <!-- Top Banner Image -->
     <ImageView
-        android:id="@+id/gameGameImageView"
+        android:id="@+id/image_banner"
         android:layout_width="match_parent"
         android:layout_height="200dp"
-        android:layout_weight="1"
-        app:srcCompat="@drawable/ic_launcher_background" />
+        android:layout_margin="5dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/wormsdrawable" />
 
+    <!-- Game Details -->
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="232dp"
-        android:layout_weight="1"
-        android:orientation="vertical">
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
 
+        <!-- Game Title -->
         <TextView
-            android:id="@+id/gameGameNameView"
+            android:id="@+id/text_title"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:paddingStart="30px"
-            android:paddingEnd="30px"
-            android:text="GameName" />
+            android:layout_height="wrap_content"
+            android:text="Game Title"
+            android:textColor="@color/white"
+            android:textSize="24sp"
+            android:textStyle="bold" />
 
+        <!-- Game Description -->
+        <TextView
+            android:id="@+id/text_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Short Description"
+            android:textColor="@color/white"
+            android:textSize="16sp" />
+
+        <!-- Genre -->
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center_horizontal"
-            android:orientation="horizontal"
-            android:paddingLeft="30px">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/gameConstPublisherText"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center_horizontal"
-                android:text="Publisher:" />
+                android:text="Genre: "
+                android:textColor="@color/white"
+                android:textSize="16sp" />
 
             <TextView
-                android:id="@+id/gamePublisherTextView"
-                android:layout_width="match_parent"
+                android:id="@+id/text_genre"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="PublisherText" />
+                android:textColor="@color/white"
+                android:textSize="16sp" />
+
         </LinearLayout>
 
+        <!-- Platform -->
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:orientation="horizontal"
-            android:paddingLeft="30px">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/gameConstPlatformText"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center_horizontal"
-                android:text="Platform:" />
+                android:text="Platform: "
+                android:textColor="@color/white"
+                android:textSize="16sp" />
 
             <TextView
-                android:id="@+id/gamePlatformTextView"
-                android:layout_width="match_parent"
+                android:id="@+id/text_platform"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="PlatformText" />
+                android:textColor="@color/white"
+                android:textSize="16sp" />
+
         </LinearLayout>
+
+        <!-- Publisher -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Publisher: "
+                android:textColor="@color/white"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/text_publisher"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:textSize="16sp" />
+
+        </LinearLayout>
+
+        <!-- Developer -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Developer: "
+                android:textColor="@color/white"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/text_developer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:textSize="16sp" />
+
+        </LinearLayout>
+
+        <!-- Release Date -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Release Date: "
+                android:textColor="@color/white"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/text_release_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:textSize="16sp" />
+
+        </LinearLayout>
+
+        <!-- Game URL -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Game URL: "
+                android:textColor="@color/white"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/text_game_url"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:autoLink="web"/>
+
+        </LinearLayout>
+
+        <!-- FreeToGame Profile URL -->
 
     </LinearLayout>
-
-    <TextView
-        android:id="@+id/gameDescriptionTextView"
-        android:layout_width="match_parent"
-        android:layout_height="300dp"
-        android:layout_weight="1"
-        android:gravity="center"
-        android:text="GameDescription" />
-
-    <Button
-        android:id="@+id/gameAddGameToFavsButton"
-        android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:layout_weight="1"
-        android:text="Add To Favorites" />
 </LinearLayout>

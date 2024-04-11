@@ -65,7 +65,7 @@ public class login extends Fragment {
     {
 
         // Inflate the layout for this fragment
-        View view =inflater.inflate(R.layout.fragment_login, container, false);
+        View view = inflater.inflate(R.layout.fragment_login, container, false);
         Button moveToRegister = view.findViewById(R.id.toRegisterScreenButton);
 
         moveToRegister.setOnClickListener(new View.OnClickListener() {
@@ -76,9 +76,9 @@ public class login extends Fragment {
         });
 
 
-        Button movetoProfile = view.findViewById(R.id.loginButton);
+        Button moveToProfile = view.findViewById(R.id.loginButton);
 
-        movetoProfile.setOnClickListener(new View.OnClickListener()
+        moveToProfile.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View v) {

@@ -3,11 +3,14 @@ package com.example.gamers_chat.fragments;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.example.gamers_chat.R;
 import com.example.gamers_chat.activities.MainActivity;
@@ -68,6 +71,17 @@ public class UserProfileFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_user_profile, container, false);
         MainActivity mainActivity = (MainActivity) getActivity();
         ImageView profileImageView = view.findViewById(R.id.profileImageView);
+
+        Button moveToGameSearch = view.findViewById(R.id.goToGamesListbutton);
+
+        TextView profileNickName = view.findViewById(R.id.profileNickNameView);
+        profileNickName.setText(mainActivity.currentUser.getNickName().toString());
+        moveToGameSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Navigation.findNavController(v).navigate(R.id.action_userProfile_to_gameSearch);
+            }
+        });
 
         mainActivity.InitProfileImage(view);
         mainActivity.InitProfileImageOnLoad(view);
