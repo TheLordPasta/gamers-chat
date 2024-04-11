@@ -3,7 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/backgroundwarms"
     android:foregroundTint="#F3E2E8"
     android:orientation="vertical"
     tools:context=".fragments.gameSearch">
@@ -41,7 +40,8 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="@drawable/button_drawable_background"
-            android:text="Search" />
+            android:text="Search"
+            android:textStyle="bold" />
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView

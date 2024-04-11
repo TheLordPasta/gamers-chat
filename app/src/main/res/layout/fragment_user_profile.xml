@@ -2,10 +2,9 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/LinearLayout"
+    android:id="@+id/MainMenuCard"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#B6A9E6"
     android:orientation="vertical"
     tools:context=".fragments.UserProfileFragment">
 
@@ -17,6 +16,8 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="#65288CF9"
+            android:padding="5dp"
             android:visibility="visible"
             tools:context="fragments.tempFragment">
 
@@ -47,7 +48,7 @@
                 android:scaleType="centerInside"
                 app:srcCompat="@android:drawable/sym_def_app_icon" />
 
-            <com.google.android.material.button.MaterialButton
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/selectImage"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -55,9 +56,11 @@
                 android:layout_margin="10sp"
                 android:layout_marginTop="11dp"
                 android:layout_marginBottom="10sp"
-                android:text="Select" />
+                android:background="@drawable/button_drawable_background"
+                android:text="Select"
+                android:textColor="#FFFFFF" />
 
-            <com.google.android.material.button.MaterialButton
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/uploadImage"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -65,8 +68,10 @@
                 android:layout_alignParentStart="true"
                 android:layout_marginStart="9dp"
                 android:layout_marginTop="6dp"
+                android:background="@drawable/selector_button_background_drawable"
                 android:enabled="false"
-                android:text="Upload Image" />
+                android:text="Upload Image"
+                android:textColor="#FFFFFF" />
 
             <TextView
                 android:id="@+id/profileNickNameView"
@@ -78,19 +83,22 @@
                 android:layout_toEndOf="@+id/profileImageView"
                 android:gravity="center"
                 android:textAlignment="textStart"
+                android:textColor="#FFFFFF"
                 android:textSize="48sp"
                 tools:text="User Nickname" />
 
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/goToGamesListbutton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
-                android:layout_marginStart="50dp"
-                android:layout_marginTop="256dp"
+                android:layout_marginStart="73dp"
+                android:layout_marginTop="249dp"
                 android:layout_toEndOf="@+id/selectImage"
+                android:background="@drawable/button_drawable_background"
                 android:text="Search Games"
-                android:textAlignment="viewStart" />
+                android:textAlignment="viewStart"
+                android:textColor="#FFFFFF" />
 
         </RelativeLayout>
 
@@ -99,6 +107,6 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="horizontal"/>
+        android:orientation="horizontal" />
 
 </LinearLayout>

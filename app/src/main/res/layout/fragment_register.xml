@@ -1,54 +1,76 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/liniarLayout"
+    android:id="@+id/register_card"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#BEA2F1"
     android:orientation="vertical"
     tools:context=".fragments.register">
 
-    <EditText
-        android:id="@+id/emailInput"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="email"
-        android:inputType="textWebEmailAddress"
-        android:shadowColor="#F1ECEC"
-        android:textColorHighlight="#EAD8D8"
-        android:textColorHint="#090000"
-        android:textColorLink="#F1E2E2" />
+    <LinearLayout
+        android:layout_width="284dp"
+        android:layout_height="310dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="77dp"
+        android:layout_marginTop="192dp"
+        android:layout_marginEnd="77dp"
+        android:layout_marginBottom="273dp"
+        android:background="#65288CF9"
+        android:orientation="vertical"
+        android:padding="5dp">
 
-    <EditText
-        android:id="@+id/nameinput"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="name"
-        android:inputType="textShortMessage"
-        android:textColorHint="#070606" />
+        <EditText
+            android:id="@+id/emailInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="email"
+            android:inputType="textWebEmailAddress"
+            android:shadowColor="#F1ECEC"
+            android:textColor="#FFFFFF"
+            android:textColorHighlight="#EAD8D8"
+            android:textColorHint="#B9FFFFFF"
+            android:textColorLink="#F1E2E2" />
 
-    <EditText
-        android:id="@+id/passwordInput"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="password"
-        android:inputType="textPassword"
-        android:textColorHint="#130000" />
+        <EditText
+            android:id="@+id/nameinput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="name"
+            android:inputType="textShortMessage"
+            android:textColor="#FFFFFF"
+            android:textColorHint="#B9FFFFFF" />
 
-    <EditText
-        android:id="@+id/nickname_input"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="nickname "
-        android:inputType="textShortMessage"
-        android:textColorHint="#0E0000" />
+        <EditText
+            android:id="@+id/passwordInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="password"
+            android:inputType="textPassword"
+            android:textColor="#FFFFFF"
+            android:textColorHint="#B9FFFFFF" />
 
-    <Button
-        android:id="@+id/registerButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="register" />
+        <EditText
+            android:id="@+id/nickname_input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="nickname "
+            android:inputType="textShortMessage"
+            android:textColor="#FFFFFF"
+            android:textColorHint="#B9FFFFFF" />
 
-</LinearLayout>
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/registerButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/button_drawable_background"
+            android:text="register"
+            android:textColor="#FFFFFF"
+            android:textColorHint="#B9FFFFFF" />
+    </LinearLayout>
+
+</RelativeLayout>

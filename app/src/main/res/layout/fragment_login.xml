@@ -8,16 +8,16 @@
     tools:context=".fragments.login">
 
     <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="265dp"
+        android:layout_width="256dp"
+        android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="76dp"
+        android:layout_marginStart="77dp"
         android:layout_marginLeft="10dp"
-        android:layout_marginTop="193dp"
-        android:layout_marginEnd="70dp"
+        android:layout_marginTop="192dp"
+        android:layout_marginEnd="77dp"
         android:layout_marginRight="10dp"
         android:layout_marginBottom="273dp"
         android:background="#65288CF9"
@@ -58,18 +58,31 @@
             android:textColor="#FFFFFF"
             android:textColorHint="#FFFFFF" />
 
-        <Button
-            android:id="@+id/loginButton"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="Login" />
+            android:layout_height="match_parent">
 
-        <Button
-            android:id="@+id/toRegisterScreenButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Register" />
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/loginButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="89dp"
+                android:background="@drawable/button_drawable_background"
+                android:gravity="center"
+                android:text="Login"
+                android:textColor="#FFFFFF" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/toRegisterScreenButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="35dp"
+                android:background="@drawable/button_drawable_background"
+                android:text="Register"
+                android:textColor="#FFFFFF" />
+        </RelativeLayout>
 
     </LinearLayout>
 </RelativeLayout>

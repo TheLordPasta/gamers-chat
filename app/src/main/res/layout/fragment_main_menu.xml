@@ -1,29 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/LinearLayout"
+    android:id="@+id/MainMenuCard"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".fragments.mainMenu">
 
-    <Button
-        android:id="@+id/mainMenuUserProfileBtn"
-        android:layout_width="200dp"
-        android:layout_height="100dp"
-        android:layout_marginStart="106dp"
-        android:layout_marginTop="161dp"
-        android:layout_marginEnd="106dp"
-        android:text="My Profile" />
+    <LinearLayout
+        android:id="@+id/LinearLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="141dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="77dp"
+        android:layout_marginTop="192dp"
+        android:layout_marginEnd="76dp"
+        android:layout_marginBottom="398dp"
+        android:background="#65288CF9"
+        android:orientation="vertical"
+        android:padding="10dp"
+        android:paddingEnd="70dp">
 
-    <Button
-        android:id="@+id/mainMenuGameSearchBtn"
-        android:layout_width="200dp"
-        android:layout_height="100dp"
-        android:layout_marginStart="106dp"
-        android:layout_marginTop="37dp"
-        android:layout_marginEnd="106dp"
-        android:text="Search For Games" />
-</LinearLayout>
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/mainMenuGameSearchBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/button_drawable_background"
+            android:text="Search For Games"
+            android:textColor="#FFFFFF" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/mainMenuUserProfileBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/button_drawable_background"
+            android:text="My Profile"
+            android:textColor="#FFFFFF" />
+
+    </LinearLayout>
+
+</RelativeLayout>
 

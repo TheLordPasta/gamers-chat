@@ -62,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
     StorageReference storageRef;
     LinearProgressIndicator progressIndicator;
     Uri image;
-    MaterialButton selectImageButtom, uploadImageButtom;
+    androidx.appcompat.widget.AppCompatButton selectImageButtom, uploadImageButtom;
     ImageView imageView;
     private final ActivityResultLauncher<Intent> activityResultLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
         @Override
