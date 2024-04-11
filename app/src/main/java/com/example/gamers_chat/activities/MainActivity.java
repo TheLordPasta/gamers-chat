@@ -2,7 +2,7 @@ package com.example.gamers_chat.activities;
 
 import static android.provider.MediaStore.Images.Thumbnails.getThumbnail;
 import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
-import androidx.lifecycle.Observer;
+
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -22,7 +22,6 @@ import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;   
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.MutableLiveData;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -33,7 +32,7 @@ import com.example.gamers_chat.R;
 import com.example.gamers_chat.models.CustomAdapterGames;
 import com.example.gamers_chat.models.GameModel;
 import com.example.gamers_chat.models.User;
-import com.example.gamers_chat.repository.NetworkRepository;
+import com.example.gamers_chat.services.DataService;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -85,7 +84,7 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView recyclerViewGames;
     private LinearLayoutManager layoutManager;
     private CustomAdapterGames gameAdapter;
-    private NetworkRepository repository;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -105,24 +104,8 @@ public class MainActivity extends AppCompatActivity {
         recyclerViewGames.setLayoutManager(layoutManager);
         recyclerViewGames.setItemAnimator(new DefaultItemAnimator());
 
-        repository = new NetworkRepository();
 
-
-        // Call method to fetch games
-        MutableLiveData<ArrayList<GameModel>> temp = repository.getGames();
-        gameList = temp.getValue();
-//        if (dataSetGames == null) {
-//            dataSetGames = new ArrayList<>();
-//            for ( int i =0 ; i < gameList.gameNames.length ; i++) {
-//                dataSetGames.add(new GameModel(
-//                        gameList.gameNames[i],
-//                        gameList.gameDescriptions[i],
-//                        gameList.gamePlatforms[i],
-//                        gameList.gamePublishers[i],
-//                        gameList.gameBannerDrawables[i]
-//                ));
-//            }
-//        }
+        gameList = DataService.getArrGames();
 
 
 
